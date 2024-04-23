@@ -8,8 +8,8 @@ Auto Select Stories: Automatically select user stories based on the sprint capac
 Clear Stories: Clear all added user stories with a single click.
 Clear Selected Stories: Clear only the selected user stories from the list.
 Technologies Used:
-Angular
-HTML/CSS
+Angular 17
+HTML5/Tailwind Css
 TypeScript
 How to Use:
 Clone the repository to your local machine.
