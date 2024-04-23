@@ -1,0 +1,6 @@
+input{
+    @apply font-normal text-sm leading-5 text-gray-600 w-full bg-white py-2 border-[1px] border-gray-200 px-2 rounded-md gap-2 self-stretch placeholder:text-gray-300 placeholder:opacity-80 placeholder:font-normal focus:outline-none placeholder:text-sm
+}
+button{
+    @apply text-sm text-white rounded-md  p-2 font-semibold 
+}

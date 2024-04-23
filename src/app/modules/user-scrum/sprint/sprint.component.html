@@ -1,0 +1,49 @@
+<div class="p-4">
+    <div class="w-1/2">
+        <label class="py-2" for="sprintPoints">Set Sprint Target Points:</label>
+        <input type="number" [(ngModel)]="sprintPoints" name="sprintPoints" min="0">
+   
+   <div class=" flex items-center gap-2 py-4 justify-end">
+    <button class="bg-green-500 " (click)="autoSelectStories()">Auto Select Stories</button>
+    <button class="bg-blue-600" (click)="clearStories()">Clear Stories</button>
+    <button class="bg-red-500" (click)="clearSelectedStories()">Clear Selected Stories</button>
+   </div>
+</div>
+
+
+<div *ngIf="getSelectedStories().length > 0">
+    <h2>Selected Stories</h2>
+
+  <div class="grid grid-cols-4 gap-4" >
+    <ng-container *ngFor="let stroy of getSelectedStories();index as i">
+        <div class="border-[1px] border-gray-200 bg-white shadow-md rounded-md w-full p-2 cursor-pointer ">
+            <div class="flex items-center gap-2">
+                <span class="">
+                    <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="story" sketch:type="MSArtboardGroup">
+                                <g id="Story" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+                                    <rect id="Rectangle-36" fill="#63BA3C" sketch:type="MSShapeGroup" x="0" y="0" width="14" height="14" rx="2"></rect>
+                                    <path d="M9,3 L5,3 C4.448,3 4,3.448 4,4 L4,10.5 C4,10.776 4.224,11 4.5,11 C4.675,11 4.821,10.905 4.91,10.769 L4.914,10.77 L6.84,8.54 C6.92,8.434 7.08,8.434 7.16,8.54 L9.086,10.77 L9.09,10.769 C9.179,10.905 9.325,11 9.5,11 C9.776,11 10,10.776 10,10.5 L10,4 C10,3.448 9.552,3 9,3"  fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                   </span>
+                <h3 class=" font-semibold text-base">{{stroy.stroyTitle}}</h3>
+            </div>
+            <div class="pt-4 pb-2 flex justify-between items-center">
+             <div class=" flex justify-between gap-2 items-center ">
+                <span class="px-2 py-1 text-white text-[12px] rounded-md " [ngClass]="{'bg-gray-500': stroy.status=='To Do','bg-blue-500': stroy.status=='In Progress','bg-green-400': stroy.status=='Done'}">{{stroy.status}}</span>
+                <span class="px-2 py-1 text-white text-[12px] rounded-md bg-gray-500">Story Point: {{stroy.storyPoints}}</span>
+             </div>
+             <div>
+                <span class="font-bold text-sm">SP-{{i+1}}</span>
+             </div>
+            </div>
+          
+        </div>
+    </ng-container>
+</div>
+</div>
+  </div>

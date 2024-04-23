@@ -1,0 +1,61 @@
+<div class="p-4">
+<div class=" py-2 flex justify-between">
+    <h2 class="text-lg text-black uppercase font-semibold">Stories</h2>
+    <button class="text-sm text-white rounded-md bg-blue-500 p-2 font-semibold flex" (click)="createStories()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"></path></svg>Create Stories</button>
+</div>
+
+<div class="grid grid-cols-4 gap-4" >
+    <ng-container *ngFor="let stroy of storyService.getStories();index as i">
+        <div class="border-[1px] border-gray-200 bg-white shadow-md rounded-md w-full p-2 cursor-pointer ">
+            <div class="flex items-center gap-2">
+                <span class="">
+                    <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+                            <g id="story" sketch:type="MSArtboardGroup">
+                                <g id="Story" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+                                    <rect id="Rectangle-36" fill="#63BA3C" sketch:type="MSShapeGroup" x="0" y="0" width="14" height="14" rx="2"></rect>
+                                    <path d="M9,3 L5,3 C4.448,3 4,3.448 4,4 L4,10.5 C4,10.776 4.224,11 4.5,11 C4.675,11 4.821,10.905 4.91,10.769 L4.914,10.77 L6.84,8.54 C6.92,8.434 7.08,8.434 7.16,8.54 L9.086,10.77 L9.09,10.769 C9.179,10.905 9.325,11 9.5,11 C9.776,11 10,10.776 10,10.5 L10,4 C10,3.448 9.552,3 9,3"  fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                   </span>
+                <h3 class=" font-semibold text-base">{{stroy.stroyTitle}}</h3>
+            </div>
+            <div class="pt-4 pb-2 flex justify-between items-center">
+             <div class=" flex justify-between gap-2 items-center ">
+                <span class="px-2 py-1 text-white text-[12px] rounded-md " [ngClass]="{'bg-gray-500': stroy.status=='To Do','bg-blue-500': stroy.status=='In Progress','bg-green-400': stroy.status=='Done'}">{{stroy.status}}</span>
+                <span class="px-2 py-1 text-white text-[12px] rounded-md bg-gray-500">Story Point: {{stroy.storyPoints}}</span>
+             </div>
+             <div>
+                <span class="font-bold text-sm">SP-{{i+1}}</span>
+             </div>
+            </div>
+          
+        </div>
+    </ng-container>
+</div>
+
+<div class="my-5" *ngIf="storyService.getStories().length==0">
+<svg class="text-center block w-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M198.24,62.63l15.68-17.25a8,8,0,0,0-11.84-10.76L186.4,51.86A95.95,95.95,0,0,0,57.76,193.37L42.08,210.62a8,8,0,1,0,11.84,10.76L69.6,204.14A95.95,95.95,0,0,0,198.24,62.63ZM48,128A80,80,0,0,1,175.6,63.75l-107,117.73A79.63,79.63,0,0,1,48,128Zm80,80a79.55,79.55,0,0,1-47.6-15.75l107-117.73A79.95,79.95,0,0,1,128,208Z"></path></svg>
+    <p class="text-lg text-black text-center font-medium">No Stories available! Click create stories button to add new story</p>
+</div>
+
+</div>
+
+
+<app-create-story *ngIf="isOpenPopup" (closeModal)="toggleModalClose()"  (responseStatus)="getStatusCode($event)"></app-create-story>
+
+<div class=" fixed bottom-0 right-0  z-50 p-4" *ngIf="toastAlive">
+    
+    <div class="py-2 px-4 rounded-md" [ngClass]="{'bg-amber-400 ': statusCode.statusCode==3,'bg-red-500 ': statusCode.statusCode==2,'bg-green-600 ': statusCode.statusCode==1}" >
+        <div class="text-white text-sm flex items-center gap-2">
+            <svg *ngIf="statusCode.statusCode==3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"></path></svg>
+
+            <svg *ngIf="statusCode.statusCode==2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"></path></svg>
+
+            <svg *ngIf="statusCode.statusCode==1"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path></svg>
+            
+            <span  >{{statusCode.msg}}</span></div>
+    </div>
+  </div>

@@ -1,0 +1,45 @@
+
+<div class="opacity-50 fixed inset-0 z-40 bg-gray-100"></div>
+
+<div class="relative w-full h-full max-h-full overflow-hidden flex flex-col">
+  
+  <div class=" overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+    <div class="relative w-2/5" >
+      <!--content-->
+      <div class="relative rounded-md border-[1px] border-gray-200 shadow-md  flex flex-col w-full bg-white outline-none focus:outline-none">
+        
+        <!--body-->
+       <div>
+        <div class="flex justify-between items-center rounded-t p-4 shadow-sm bg-gray-200">
+            <div class="flex gap-1">
+               <span class="text-lg font-medium ">Create Story</span>
+            </div> 
+            <span class="cursor-pointer" (click)="toggleModalClose()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"><g clip-path="url(#a)" stroke="#98A2B3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15.625 4.375-11.25 11.25M15.625 15.625 4.375 4.375"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs></svg>
+            </span>  
+          </div>
+          <form  [formGroup]="storyFormGroup">
+          <div class="p-4">
+            <div class="p-2 flex flex-col gap-2" >
+                <label>Story Name</label>
+              <input formControlName="stroyTitle"  type="text" placeholder="Enter story name"  >
+           </div>
+            <div class="p-2 flex flex-col gap-2" >
+                <label>Story Point</label>
+              <input formControlName="storyPoints"  type="number" placeholder="Enter story point" min="0" >
+           </div>
+
+           <div class="flex justify-end">
+            <button class="text-sm text-white rounded-md bg-blue-500 p-2 font-semibold flex items-center gap-1 " (click)="saveStory()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 256 256"><path d="M219.31,72,184,36.69A15.86,15.86,0,0,0,172.69,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V83.31A15.86,15.86,0,0,0,219.31,72ZM168,208H88V152h80Zm40,0H184V152a16,16,0,0,0-16-16H88a16,16,0,0,0-16,16v56H48V48H172.69L208,83.31ZM160,72a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h56A8,8,0,0,1,160,72Z"></path></svg>Save Stories</button>
+           </div>
+          </div>
+          <!-- <p>{{storyFormGroup.value|json}}</p> -->
+         </form>
+       
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
